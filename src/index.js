@@ -35,6 +35,8 @@ import 'styles/tailwind.css';
 
 // const AuthEnabledApp = enableAuth(App, API_HOST);
 
+console.log("THEME:", get(Themes, PROJECT_THEME, Themes["light"]))
+
 ReactDOM.render(
   <React.StrictMode>
    	<Provider store={ store }>
