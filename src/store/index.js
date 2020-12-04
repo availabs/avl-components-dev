@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
-import { falcorCache, messages } from "@availabs/avl-components"
+import { falcorCache, messages } from "avl-components/src"
 
 // import reducers from "components/ams/reducers"
 
