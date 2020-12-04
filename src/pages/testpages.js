@@ -1,5 +1,9 @@
+import React from "react"
+
+import { Content } from "avl-components/src"
+
 const TestPage1 = {
-  type: "div",
+  type: Content,
   children: [
     { type: "div",
       children: ["TEST 1"]
@@ -7,7 +11,7 @@ const TestPage1 = {
   ]
 }
 const TestPage2 = {
-  type: "div",
+  type: Content,
   children: [
     { type: "div",
       children: ["TEST 2"]
@@ -15,7 +19,7 @@ const TestPage2 = {
   ]
 }
 const TestPage3 = {
-  type: "div",
+  type: Content,
   children: [
     { type: "div",
       children: ["TEST 3"]
@@ -42,7 +46,14 @@ const TestPages = [
     layoutSettings: {
       fixed: true,
       navBar: 'side',
-      headerBar: false
+      headerBar: {
+        title: () => <div>STUFF HERE!!!</div>,
+        children: [
+          "test1",
+          <div className="mx-1">test2</div>,
+          () => <div className="mx-1">test3</div>
+        ]
+      }
     },
     component: TestPage2
   },
@@ -52,7 +63,7 @@ const TestPages = [
     exact: true,
     layoutSettings: {
       fixed: true,
-      navBar: 'side',
+      navBar: 'top',
       headerBar: false
     },
     component: TestPage3
