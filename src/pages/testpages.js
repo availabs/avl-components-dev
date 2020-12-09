@@ -26,6 +26,14 @@ const TestPage3 = {
     }
   ]
 }
+const TestPage4 = {
+  type: Content,
+  children: [
+    { type: "div",
+      children: ["TEST 4"]
+    }
+  ]
+}
 
 const TestPages = [
   { path: "/test1",
@@ -67,6 +75,17 @@ const TestPages = [
       headerBar: false
     },
     component: TestPage3
+  },
+  { path: "/test4",
+    mainNav: true,
+    name: "Test 4",
+    exact: true,
+    layoutSettings: {
+      fixed: true,
+      navBar: false,
+      headerBar: true
+    },
+    component: TestPage4
   },
 ]
 export default TestPages;

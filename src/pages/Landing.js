@@ -15,7 +15,7 @@ const config = {
     fixed: true,
     headerBar: false,
     logo: "AVAIL",
-    navBar: false
+    navBar: 'side'
   }
 }
 
