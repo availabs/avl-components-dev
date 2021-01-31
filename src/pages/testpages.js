@@ -5,8 +5,8 @@ import get from "lodash.get"
 import { Content, Select } from "avl-components/src"
 
 const Test1 = ({ falcor, falcorCache }) => {
-  const [geoid, setGeoid] = React.useState("36001"),
-    [county, setCounty] = React.useState(null);
+  const [geoid, setGeoid] = React.useState(["36001"]),
+    [county, setCounty] = React.useState([]);
 
   React.useEffect(() => {
     falcor.get(["geo", "36", "counties"])
@@ -27,11 +27,11 @@ const Test1 = ({ falcor, falcorCache }) => {
   return (
     <div className="py-8 mx-auto max-w-2xl w-full">
       <div className="mb-1">
-        Geoid: { geoid }
+        Geoid: { JSON.stringify(geoid) }
       </div>
       <Select options={ options }
         accessor={ d => d.name }
-        multi={ false } value={ geoid }
+        multi={ true } value={ geoid }
         onChange={ setGeoid }
         valueAccessor={ d => d.geoid }/>
 
@@ -40,7 +40,7 @@ const Test1 = ({ falcor, falcorCache }) => {
       </div>
       <Select options={ options }
         accessor={ d => d.name }
-        multi={ false } value={ county }
+        multi={ true } value={ county }
         onChange={ setCounty }/>
     </div>
   )
