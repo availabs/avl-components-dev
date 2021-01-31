@@ -1,14 +1,54 @@
 import React from "react"
 
-import { Content } from "avl-components/src"
+import get from "lodash.get"
+
+import { Content, Select } from "avl-components/src"
+
+const Test1 = ({ falcor, falcorCache }) => {
+  const [geoid, setGeoid] = React.useState("36001"),
+    [county, setCounty] = React.useState(null);
+
+  React.useEffect(() => {
+    falcor.get(["geo", "36", "counties"])
+      .then(res => {
+        const counties = get(res, ["json", "geo", "36", "counties"]);
+        return falcor.get(["geo", counties, "name"]);
+      })
+  }, [falcor]);
+
+  const options = React.useMemo(() => {
+    const counties = get(falcorCache, ["geo", "36", "counties", "value"], []);
+    return counties.map(geoid => {
+      const name = get(falcorCache, ["geo", geoid, "name"]);
+      return { geoid, name };
+    }).sort((a, b) => a.name.localeCompare(b.name));
+  }, [falcorCache]);
+
+  return (
+    <div className="py-8 mx-auto max-w-2xl w-full">
+      <div className="mb-1">
+        Geoid: { geoid }
+      </div>
+      <Select options={ options }
+        accessor={ d => d.name }
+        multi={ false } value={ geoid }
+        onChange={ setGeoid }
+        valueAccessor={ d => d.geoid }/>
+
+      <div className="my-2">
+        County: { JSON.stringify(county) }
+      </div>
+      <Select options={ options }
+        accessor={ d => d.name }
+        multi={ false } value={ county }
+        onChange={ setCounty }/>
+    </div>
+  )
+}
 
 const TestPage1 = {
-  type: Content,
-  children: [
-    { type: "div",
-      children: ["TEST 1"]
-    }
-  ]
+  type: Test1,
+  wrappers: ["avl-falcor"]
 }
 const TestPage2 = {
   type: Content,
