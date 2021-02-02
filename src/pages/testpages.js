@@ -1,5 +1,7 @@
 import React from "react"
 
+import { useParams } from "react-router-dom"
+
 import get from "lodash.get"
 
 import { Content, Select } from "avl-components/src"
@@ -7,6 +9,13 @@ import { Content, Select } from "avl-components/src"
 const Test1 = ({ falcor, falcorCache }) => {
   const [geoid, setGeoid] = React.useState(["36001"]),
     [county, setCounty] = React.useState([]);
+
+  const { geoid: fromParams } = useParams();
+  React.useEffect(() => {
+    if (fromParams) {
+      setGeoid(fromParams.split("_"));
+    }
+  }, [fromParams]);
 
   React.useEffect(() => {
     falcor.get(["geo", "36", "counties"])
@@ -76,7 +85,7 @@ const TestPage4 = {
 }
 
 const TestPages = [
-  { path: "/test1",
+  { path: ["/test1", "/test1/:geoid"],
     mainNav: true,
     name: "Test 1",
     exact: true,
