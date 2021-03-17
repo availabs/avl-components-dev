@@ -13,12 +13,25 @@ const continuousWrapper = Component => {
       .then(res => {
         const length = +get(res, ["json", "hds", "continuous", "stations", "length"], 0);
         if (length) {
-          return falcor.get(
-            ["hds", "continuous", "stations", "byIndex",
-              { from: 0, to: length - 1 },
+          const indices = [];
+          for (let i = 0; i < length; ++i) {
+            indices.push(i);
+          }
+console.log("????", length)
+          return falcor.chunk(
+            ["hds", "continuous", "stations", "byIndex", indices,
               ["stationId", "data_type", "muni"]
-            ]
+            ],  { onProgress: (curr, total) => {
+                    console.log("PROGRESS:", curr, total)
+                  }
+                }
           )
+          // return falcor.get(
+          //   ["hds", "continuous", "stations", "byIndex",
+          //     { from: 0, to: length - 1 },
+          //     ["stationId", "data_type", "muni"]
+          //   ]
+          // )
         }
       })
     }, [falcor]);
