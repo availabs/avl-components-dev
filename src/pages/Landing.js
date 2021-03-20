@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Landing = () =>
-  <div className="h-full flex items-center justify-center flex-col">
+  <div className="h-full w-full grid place-content-center place-items-center">
     <div className="text-2xl font-bold">Welcome</div>
     <div className="text-xl">Please add new pages!</div>
   </div>

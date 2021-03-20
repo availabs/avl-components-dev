@@ -99,7 +99,8 @@ const TableTest = () => {
         value={ markdown }
         onChange={ setMarkdown }/>
 
-      <Table columns={ Columns }
+      <Table initialPageSize={ 20 }
+        columns={ Columns }
         data={ makeSomeData() }/>
 
     </Content>
