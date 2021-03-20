@@ -30,7 +30,7 @@ const Test1 = ({ falcor, falcorCache }) => {
     return counties.map(geoid => {
       const name = get(falcorCache, ["geo", geoid, "name"]);
       return { geoid, name };
-    }).sort((a, b) => a.name.localeCompare(b.name));
+    }).sort((a, b) => get(a, "name", "").localeCompare(get(b, "name", "")));
   }, [falcorCache]);
 
   return (

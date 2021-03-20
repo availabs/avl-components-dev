@@ -13,6 +13,7 @@ import {
   FalcorProvider,
   ThemeContext,
   falcorGraph,
+  ComponentProvider,
   // addComponents,
   // addWrappers
 } from "avl-components/src"
@@ -41,10 +42,12 @@ ReactDOM.render(
   <React.StrictMode>
    	<Provider store={ store }>
   		<FalcorProvider falcor={ falcorGraph(API_HOST) }>
-        <ThemeContext.Provider value={ get(Themes, PROJECT_THEME, Themes["light"]) }>
-  	    	<App />
-          { /*<AuthEnabledApp />*/ }
-        </ThemeContext.Provider>
+        <ComponentProvider>
+          <ThemeContext.Provider value={ get(Themes, PROJECT_THEME, Themes["light"]) }>
+    	    	<App />
+            { /*<AuthEnabledApp />*/ }
+          </ThemeContext.Provider>
+        </ComponentProvider>
       </FalcorProvider>
   	</Provider>
   </React.StrictMode>,

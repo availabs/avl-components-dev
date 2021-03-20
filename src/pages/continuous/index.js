@@ -10,6 +10,7 @@ const continuous = {
   layoutSettings: {
     fixed: true,
     navBar: 'side',
+    userMenu: "nav",
     headerBar: {
       title: "Continuous Counts"
     }

@@ -18,7 +18,7 @@ class App extends React.Component {
         <Switch>
           { Routes.map((route, i) =>
               <DefaultLayout key={ i } { ...route } { ...this.props }
-                menus={ Routes.filter(r => r.mainNav) }/>
+                menuItems={ route.menuItems || Routes.filter(r => r.mainNav) }/>
             )
           }
         </Switch>

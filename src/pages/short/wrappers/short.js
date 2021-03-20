@@ -15,12 +15,12 @@ const shortWrapper = Component =>
 
     React.useEffect(() => {
       setLoading(true);
-      falcor.get(["hds", "short", "stations", region, "length"])
+      falcor.get(["ris", "short", "stations", "aggregate", region, 2019, "length"])
         .then(res => {
-          const length = +get(res, ["json", "hds", "short", "stations", region, "length"], 0);
+          const length = +get(res, ["json", "ris", "short", "stations", "aggregate", region, 2019, "length"], 0);
           if (length) {
             return falcor.get(
-              ["hds", "short", "stations", region, "byIndex",
+              ["ris", "short", "stations", "aggregate", region, 2019, "byIndex",
                 { from: 0, to: length - 1 }, 'array'
               ]
             )
@@ -52,12 +52,12 @@ const shortWrapper = Component =>
 export default shortWrapper;
 
 const getStationsFromCache = (region, falcorCache) => {
-  const length = +get(falcorCache, ["hds", "short", "stations", region, "length"], 0);
+  const length = +get(falcorCache, ["ris", "short", "stations", "aggregate", region, 2019, "length"], 0);
 
   const stations = [];
 
   for (let i = 0; i < length; ++i) {
-    const ref = get(falcorCache, ["hds", "short", "stations", region, "byIndex", i, "value"]),
+    const ref = get(falcorCache, ["ris", "short", "stations", "aggregate", region, 2019, "byIndex", i, "value"]),
       data = get(falcorCache, ref);
     if (data) {
       stations.push(...get(data, ["array", "value"], []));
