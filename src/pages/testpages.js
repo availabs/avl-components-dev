@@ -90,51 +90,42 @@ const TestPages = [
     name: "Test 1",
     exact: true,
     layoutSettings: {
-      fixed: true,
-      navBar: 'side',
-      headerBar: false
-    },
-    component: TestPage1
-  },
-  { path: "/test2",
-    mainNav: true,
-    name: "Test 2",
-    exact: true,
-    layoutSettings: {
-      fixed: true,
-      navBar: 'side',
-      headerBar: {
-        title: () => <div>STUFF HERE!!!</div>,
-        children: [
-          "test1",
-          <div className="mx-1">test2</div>,
-          () => <div className="mx-1">test3</div>
-        ]
-      }
-    },
-    component: TestPage2
-  },
-  { path: "/test3",
-    mainNav: true,
-    name: "Test 3",
-    exact: true,
-    layoutSettings: {
-      fixed: true,
       navBar: 'top',
       headerBar: false
     },
-    component: TestPage3
-  },
-  { path: "/test4",
-    mainNav: true,
-    name: "Test 4",
-    exact: true,
-    layoutSettings: {
-      fixed: true,
-      navBar: false,
-      headerBar: true
-    },
-    component: TestPage4
-  },
+    component: TestPage1,
+    subMenus: [
+      { path: "/test2",
+        mainNav: true,
+        name: "Test 2",
+        exact: true,
+        layoutSettings: {
+          navBar: 'top',
+          headerBar: false
+        },
+        component: TestPage2
+      },
+      { path: "/test3",
+        mainNav: true,
+        name: "Test 3",
+        exact: true,
+        layoutSettings: {
+          navBar: 'top',
+          headerBar: false
+        },
+        component: TestPage3
+      },
+      { path: "/test4",
+        mainNav: true,
+        name: "Testing Longer 4",
+        exact: true,
+        layoutSettings: {
+          navBar: 'top',
+          headerBar: false
+        },
+        component: TestPage4
+      }
+    ]
+  }
 ]
 export default TestPages;

@@ -1,30 +1,36 @@
 import React from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
-import ScrollToTop from 'utils/ScrollToTop'
+import get from "lodash.get"
 
-import Routes from 'Routes';
+import ScrollToTop from 'utils/ScrollToTop'
 
 import {
   DefaultLayout,
   Messages
 } from "avl-components/src"
 
-class App extends React.Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <ScrollToTop />
-        <Switch>
-          { Routes.map((route, i) =>
-              <DefaultLayout key={ i } { ...route } { ...this.props }
-                menuItems={ route.menuItems || Routes.filter(r => r.mainNav) }/>
-            )
-          }
-        </Switch>
-        <Messages />
-      </BrowserRouter>
-    );
-  }
+import Routes from 'Routes';
+
+const RoutesToRender = Routes.reduce((a, route, i) => {
+  a.push(route);
+  a.push(...get(route, "subMenus", []));
+  return a;
+}, []);
+
+const App = props => {
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Switch>
+        { RoutesToRender.map((route, i) => (
+            <DefaultLayout key={ i } { ...route } { ...props }
+              menus={ Routes.filter(r => r.mainNav) }/>
+          ))
+        }
+      </Switch>
+      <Messages />
+    </BrowserRouter>
+  );
 }
 export default App
