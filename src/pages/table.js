@@ -72,9 +72,11 @@ const ExpandRow = ({ values }) => {
   )
 }
 
+const md = '# test 2\n```\ntesting testing testing\n```\n> testing'
+
 const TableTest = () => {
   const [value, setValue] = React.useState(false);
-  const [markdown, setMarkdown] = React.useState("");
+  const [markdown, setMarkdown] = React.useState(md);
   const [option, setOption] = React.useState(null);
 
   const theme = useTheme();
