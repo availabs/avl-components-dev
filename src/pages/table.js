@@ -11,7 +11,8 @@ import {
   DndList,
   useDndList,
   useTheme,
-  Legend
+  Legend,
+  ColorInput
 } from "avl-components/src"
 
 const Columns = [
@@ -78,6 +79,7 @@ const TableTest = () => {
   const [value, setValue] = React.useState(false);
   const [markdown, setMarkdown] = React.useState(md);
   const [option, setOption] = React.useState(null);
+  const [color, setColor] = React.useState("#481975");
 
   const theme = useTheme();
 
@@ -90,6 +92,19 @@ const TableTest = () => {
   return (
     <Content className="pt-10 pb-16">
       <div className="grid grid-cols-1 gap-y-4">
+
+        <div className="h-96">
+          <ColorInput color={ color }
+            onChange={ setColor }/>
+        </div>
+
+        <div className="h-48 w-64">
+          <ColorInput color={ color }
+            onChange={ setColor }
+            showPreview={ false }
+            showInputs={ false }
+            small/>
+        </div>
 
         <div>
           <Legend domain={ [5, 10, 20, 40, 80, 160] } size={ 5 }

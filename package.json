@@ -23,6 +23,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.0.0",
+    "react-color": "^2.19.3",
     "react-dom": "^17.0.1",
     "react-markdown": "^5.0.3",
     "react-markdown-renderer": "^1.4.0",
