@@ -79,7 +79,7 @@ const TableTest = () => {
   const [value, setValue] = React.useState(false);
   const [markdown, setMarkdown] = React.useState(md);
   const [option, setOption] = React.useState(null);
-  const [color, setColor] = React.useState("#481975");
+  const [color, setColor] = React.useState(null);
 
   const theme = useTheme();
 
@@ -94,15 +94,16 @@ const TableTest = () => {
       <div className="grid grid-cols-1 gap-y-4">
 
         <div className="h-96">
-          <ColorInput color={ color }
+          <ColorInput value={ color }
             onChange={ setColor }/>
         </div>
 
-        <div className="h-48 w-64">
-          <ColorInput color={ color }
+        <div className="w-72">
+          <ColorInput value={ color }
             onChange={ setColor }
             showPreview={ false }
-            showInputs={ false }
+            showLabels={ false }
+            showRgb={ false }
             small/>
         </div>
 
