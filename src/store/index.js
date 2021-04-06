@@ -12,13 +12,13 @@ const FAKE_USER = {
   id: 389,
   email: "very.very.long.fake.email@fake.com"
 }
-const Reducer = (state, action) => FAKE_USER
+const user = (state, action) => FAKE_USER
 
 const reducer = combineReducers({
   // ...reducers,
   messages,
   // falcorCache
-  user: Reducer
+  user
 });
 
 export default createStore(reducer, applyMiddleware(thunk))

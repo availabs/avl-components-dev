@@ -36,13 +36,30 @@ import 'styles/tailwind.css';
 
 // const AuthEnabledApp = enableAuth(App, API_HOST);
 
-console.log("THEME:", get(Themes, PROJECT_THEME, Themes["light"]))
-
 ReactDOM.render(
   <React.StrictMode>
    	<Provider store={ store }>
   		<FalcorProvider falcor={ falcorGraph(API_HOST) }>
         <ComponentProvider>
+        { /*
+          <ComponentProvider
+          	TopUserMenu={ MyTopUserMenu } <-- This will override the ENTIRE menu.
+                                              Unless your custom component used the "useComponents" hook,
+                                              there would be no point overriding anything else.
+            TopUserMenuControl={ MyTopUserMenuControl } <-- This overrides just the component that is clicked to open the menu.
+
+          	SideUserMenu={ MySideUserMenu } <-- This will override the ENTIRE menu.
+                                              Unless your custom component used the "useComponents" hook,
+                                              there would be no point overriding anything else.
+            SideUserMenuControl={ MySideUserMenuControl } <-- This overrides just the component that is clicked to open the menu.
+
+          	UserMenuItem={ MyUserMenuItem } <-- This overrides the component used for menu items.
+            UserMenuSeparator={ MyUserMenuSeparator } <-- This overrides the component used for separating menu items.
+          	UserMenuItems={ MyUserMenuItems }> <-- This changes the default list of items that appears in the user menu.
+
+            All of these are defined in: avl-components/src/components/Header/UserMenu
+          */
+        }
           <ThemeContext.Provider value={ get(Themes, PROJECT_THEME, Themes["light"]) }>
     	    	<App />
             { /*<AuthEnabledApp />*/ }

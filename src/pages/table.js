@@ -11,8 +11,9 @@ import {
   DndList,
   useDndList,
   useTheme,
-  Legend,
-  ColorInput
+  Legend, LegendTools,
+  ColorInput,
+  getColorRange
 } from "avl-components/src"
 
 const Columns = [
@@ -51,11 +52,14 @@ const makeSomeData = (rows = 50) => {
   return data;
 }
 
+const OptionComponent = ({ option, onClick }) =>
+  <div onClick={ onClick }>{ option.value }!!!</div>
+
 const OPTIONS = [
-  { key: "one", value: "value one" },
-  { key: "two", value: "value two" },
-  { key: "three", value: "value three" },
-  { key: "four", value: "value four" }
+  { key: "one", value: "value one", OptionComponent },
+  { key: "two", value: "value two", OptionComponent },
+  { key: "three", value: "value three", OptionComponent },
+  { key: "four", value: "value four", OptionComponent }
 ]
 
 const Row = ({ children, ...props }) => {
@@ -89,11 +93,22 @@ const TableTest = () => {
 
   const tableData = makeSomeData();
 
+  const [legend, setLegend] = React.useState({
+    type: "quantile",
+    types: ["quantile", "quantize"],
+    domain: [1, 2, 10, 16, 27, 54, 89, 123, 345],
+    range: getColorRange(5, "BrBG"),
+    format: ",.1f"
+  })
+  const updateLegend = React.useCallback(update => {
+    setLegend(legend => ({ ...legend, ...update }));
+  }, [])
+
   return (
     <Content className="pt-10 pb-16">
       <div className="grid grid-cols-1 gap-y-4">
 
-        <div className="h-96">
+        <div>
           <ColorInput value={ color }
             onChange={ setColor }/>
         </div>
@@ -107,10 +122,12 @@ const TableTest = () => {
             small/>
         </div>
 
-        <div>
-          <Legend domain={ [5, 10, 20, 40, 80, 160] } size={ 5 }
-            range={ ["red", "orange", "yellow", "green", "blue", "indigo", "violet"] }
-            type="threshold"/>
+        <div className="bg-gray-200 p-4 rounded">
+          <Legend { ...legend }/>
+          <LegendTools onChange={ updateLegend }
+            range={ legend.range }
+            type={ legend.type }
+            types={ legend.types }/>
         </div>
 
         <DndList onDrop={ onDrop } className={`pb-0 ${theme.bgSuccess}`}>
