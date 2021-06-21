@@ -13,7 +13,8 @@ import {
   useTheme,
   Legend, LegendTools,
   ColorInput,
-  getColorRange
+  getColorRange,
+  CollapsibleSidebar
 } from "avl-components/src"
 
 const Columns = [
@@ -107,6 +108,24 @@ const TableTest = () => {
   return (
     <Content className="pt-10 pb-16">
       <div className="grid grid-cols-1 gap-y-4">
+
+        <div style={ { height: "500px", position: "relative" } }>
+          <CollapsibleSidebar togglePosition="middle">
+            <div className={ `${ theme.sidebarBg } p-2 rounded` }
+              style={ { minHeight: "100%" } }>
+              <div className="grid gap-y-2">
+                <div className={ `${ theme.accent2 } h-32 rounded` }/>
+                <div className={ `${ theme.accent2 } h-32 rounded` }/>
+                <div className={ `${ theme.accent2 } h-32 rounded` }/>
+                <div className={ `${ theme.accent2 } h-32 rounded` }/>
+                <div className={ `${ theme.accent2 } h-32 rounded` }/>
+                <div className={ `${ theme.accent2 } h-32 rounded` }/>
+                <div className={ `${ theme.accent2 } h-32 rounded` }/>
+                <div className={ `${ theme.accent2 } h-32 rounded` }/>
+              </div>
+            </div>
+          </CollapsibleSidebar>
+        </div>
 
         <div>
           <ColorInput value={ color }
