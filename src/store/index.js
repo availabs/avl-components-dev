@@ -10,7 +10,7 @@ const FAKE_USER = {
   authLevel: 5,
   authed: true,
   id: 389,
-  email: "very.very.long.fake.email@fake.com"
+  email: "very.very.long.fake.email@fake.email.com"
 }
 const user = (state, action) => FAKE_USER
 

@@ -12,7 +12,6 @@ const config = {
   mainNav: false,
   component: Landing,
   layoutSettings: {
-    fixed: true,
     headerBar: false,
     logo: "AVAIL",
     navBar: 'side'

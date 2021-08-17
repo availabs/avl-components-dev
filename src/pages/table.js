@@ -17,6 +17,8 @@ import {
   CollapsibleSidebar
 } from "avl-components/src"
 
+import TestConfig from "./test-config"
+
 const Columns = [
   { id: "column1",
     accessor: d => d.column1,
@@ -80,7 +82,7 @@ const ExpandRow = ({ values }) => {
 
 const md = '# test 2\n```\ntesting testing testing\n```\n> testing'
 
-const TableTest = () => {
+const TableTest = ({ children }) => {
   const [value, setValue] = React.useState(false);
   const [markdown, setMarkdown] = React.useState(md);
   const [option, setOption] = React.useState(null);
@@ -108,6 +110,8 @@ const TableTest = () => {
   return (
     <Content className="pt-10 pb-16">
       <div className="grid grid-cols-1 gap-y-4">
+
+        { children }
 
         <div style={ { height: "500px", position: "relative" } }>
           <CollapsibleSidebar togglePosition="middle">
@@ -203,6 +207,14 @@ const table = {
     navBar: 'top',
     headerBar: false
   },
-  component: TableTest
+  component: {
+    type: TableTest,
+    children: [
+      { type: TestConfig,
+        props: { test: "PROP" },
+        children: [() => <div>????????????????</div>]
+      }
+    ]
+  }
 }
 export default table;
