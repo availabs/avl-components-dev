@@ -1,7 +1,5 @@
 import ContinuousComponent from "./components/Continuous"
 import continuousWrapper from "./wrappers/continuous"
-import { SideUserMenu }  from "avl-components/src"
-
 
 const menuItems = [
   { path: "/continuous",
