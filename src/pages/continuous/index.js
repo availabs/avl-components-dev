@@ -1,5 +1,7 @@
 import ContinuousComponent from "./components/Continuous"
 import continuousWrapper from "./wrappers/continuous"
+import { SideUserMenu }  from "avl-components/src"
+
 
 const menuItems = [
   { path: "/continuous",
@@ -45,7 +47,7 @@ const continuous = {
   layoutSettings: {
     fixed: true,
     navBar: 'side',
-    userMenu: "nav",
+    userMenu : 'nav',
     headerBar: {
       title: "Continuous Counts"
     }
