@@ -36,6 +36,8 @@ import 'styles/tailwind.css';
 
 // const AuthEnabledApp = enableAuth(App, API_HOST);
 
+console.log(Themes)
+
 ReactDOM.render(
   <React.StrictMode>
    	<Provider store={ store }>
@@ -60,7 +62,7 @@ ReactDOM.render(
             All of these are defined in: avl-components/src/components/Header/UserMenu
           */
         }
-          <ThemeContext.Provider value={ get(Themes, PROJECT_THEME, Themes["light"]) }>
+          <ThemeContext.Provider value={ get(Themes, PROJECT_THEME, Themes["AVL_THEME"]) }>
     	    	<App />
             { /*<AuthEnabledApp />*/ }
           </ThemeContext.Provider>

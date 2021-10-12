@@ -7,8 +7,8 @@ import get from "lodash.get"
 import { Content, Select } from "avl-components/src"
 
 const Test1 = ({ falcor, falcorCache }) => {
-  const [geoid, setGeoid] = React.useState(["36001"]),
-    [county, setCounty] = React.useState([]);
+  const [geoid, setGeoid] = React.useState(["36011"]),
+    [county, setCounty] = React.useState([{"geoid":"36011","name":"Cayuga County"}]);
 
   const { geoid: fromParams } = useParams();
   React.useEffect(() => {
