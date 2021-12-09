@@ -92,6 +92,8 @@ const TableTest = ({ children }) => {
 
   const [items, setItems] = React.useState(OPTIONS.slice())
 
+  const [pageSize, setPageSize] = React.useState(10);
+
   const onDrop = useDndList(items, setItems);
 
   const tableData = makeSomeData();
@@ -182,12 +184,18 @@ const TableTest = ({ children }) => {
           value={ markdown }
           onChange={ setMarkdown }/>
 
+        <Select options={ [5, 10, 15] }
+          value={ pageSize }
+          onChange={ setPageSize }/>
+
         <GridTable Row={ Row }
+          pageSize={ pageSize }
           columns={ Columns }
           ExpandRow={ ExpandRow }
           data={ tableData }/>
 
         <Table
+          pageSize={ pageSize }
           columns={ Columns }
           ExpandRow={ ExpandRow }
           data={ tableData }/>
